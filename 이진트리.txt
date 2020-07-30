@@ -1,0 +1,53 @@
+class TreeNode {
+	friend class Tree;
+private:
+	int data;
+	TreeNode* leftChild;
+	TreeNode* rightChild;
+public:
+	TreeNode(int data = 0, TreeNode* leftChild = 0, TreeNode* rightChild = 0) {
+		this->data = data;
+		this->leftChild = leftChild;
+		this->rightChild = rightChild;
+	}
+};
+class Tree {
+private:
+	TreeNode* root;
+public:
+	void CreateSimple();
+	void printAll();
+	void preorder(TreeNode* c);
+	void visit(TreeNode* c);
+	void Create();
+	TreeNode* getRoot();
+};
+
+void Tree::CreateSimple() {
+	//1 2 3 넣기
+	root = new TreeNode(1, new TreeNode(2), new TreeNode(3));
+}
+void Tree::printAll() {
+	//v l r 순 프린트
+	cout << root->data << endl;
+	cout << root->leftChild->data << endl;
+	cout << root->rightChild->data << endl;
+}
+void Tree::Create() {
+	root = new TreeNode(1, new TreeNode(2), new TreeNode(3));
+	root->leftChild->leftChild = new TreeNode(4);
+	root->leftChild->rightChild = new TreeNode(5);
+}
+void Tree::preorder(TreeNode* c) {
+	if (c) {
+		visit(c);
+		preorder(c->leftChild);
+		preorder(c->rightChild);
+	}
+}
+void Tree::visit(TreeNode* c) {
+	cout << c->data << "  ";
+}
+TreeNode* Tree::getRoot() {
+	return root;
+}

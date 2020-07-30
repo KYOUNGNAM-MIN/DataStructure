@@ -1,0 +1,101 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+class Vecter {
+public:
+	float x, y;
+public:
+	Vecter(float x, float y) {
+		this->x = x;
+		this->y = y;
+	}
+	Vecter() {}
+	float GetLength() {
+		return sqrt((x*x) + (y*y));
+	}
+	Vecter operator+(Vecter &ref) {
+		/*Vecter t;
+		t.x = x + ref.x;
+		t.y = y + ref.y;
+		return t;*/
+		return Vecter(x + ref.x, y + ref.y);
+	}
+	float InnerProduct(Vecter &s) {
+		float ab = x*s.x + y*s.y;
+		return ab;
+	}
+	
+};
+
+int main() {
+	Vecter t(1, 2);
+	cout << "Length: " << t.GetLength() << endl;
+
+	cout << "-------------------------------------------------" << endl;
+
+	Vecter w(2, 3);
+	Vecter z = t + w;
+	cout << "Length: " << z.GetLength() << endl;
+
+	cout << "-------------------------------------------------" << endl;
+
+	Vecter a(1, 2);
+	Vecter b(2, 3);
+	float p = a.InnerProduct(b);
+	cout << "p: " << p << endl; //p: 8
+	
+	cout << "-------------------------------------------------" << endl;
+
+	//y=2x
+	int input;
+	cout << "입력하세요." << endl;
+	cin >> input;
+	
+	Vecter* arrVec = new Vecter[input];
+	for (int i = 0; i < input; i++) {
+		arrVec[i].x = i+1;
+		arrVec[i].y = 2*arrVec[i].x;
+	}
+	for (int i = 0; i < input; i++) {
+		cout << "(" << arrVec[i].x << "," << arrVec[i].y << ")" << endl;
+	}
+
+	delete[] arrVec;
+
+	cout << "-------------------------------------------------" << endl;
+	
+	int A[3][4];
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 4; j++) {
+			A[i][j] = i + j;
+			cout << A[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+	cout << "-------------------------------------------------" << endl;
+
+	int r, c;
+	cout << "r과 c를 입력하세요." << endl;
+	cin >> r >> c;
+	int** B = new int*[r];
+	for (int i = 0; i < r; i++) {
+		B[i] = new int[c];
+	}
+	for (int i = 0; i < r; i++) {
+		for (int j = 0; j < c; j++) {
+			B[i][j] = i + j;
+			cout << B[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+	for (int i = 0; i < r; i++) {
+		delete[] B[i];
+	}
+	delete[] B;
+
+
+	return 0;
+}

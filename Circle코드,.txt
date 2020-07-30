@@ -1,0 +1,27 @@
+#include <iostream>
+#include "Circle.h"
+using namespace std;
+
+int main() {
+	Circle c(1,2,3);
+	
+	cout << c.GetR() << endl;
+	cout << c.Area() << endl;
+	c.Circle2(5, 2);
+
+	cout << "-----------------------------------" << endl;
+	
+	Circle c2(1,2,3);
+	cout << c2.GetR() << endl;
+	cout << c2.Area() << endl;
+	c2.Circle2(5, 2);
+	
+	cout << "-----------------------------------" << endl;
+	Circle* p = new Circle(3,2,3);
+	
+
+	cout << "-----------------------------------" << endl;
+	cout << p->operator==(c2) << endl;
+
+	return 0;
+}
